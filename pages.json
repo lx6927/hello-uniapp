@@ -14,6 +14,14 @@
 	"pages": [
 		// pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
+			"path": "pages/loginPage/loginPage",
+			"style": {
+				"navigationBarTitleText": "登录"
+				// "enablePullDownRefresh": false
+			}
+		
+		},
+		{
 			"path": "pages/homePage/homePage",
 			"style": {
 				"navigationBarTitleText": "物品"

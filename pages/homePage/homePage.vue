@@ -73,16 +73,16 @@
 		},
 		onReady() {
 			console.log(1111)
-			// this.ajax();
+			this.ajax();
 		},
 		methods: {
 			ajax() {
 				uni.request({
-					url: 'http://119.3.132.242/api/list', //仅为示例，并非真实接口地址。
-					// data: {
-					// text: 'uni.request'
-					// },
-					method: 'get',
+					url: 'http://127.0.0.1:9999/login', //仅为示例，并非真实接口地址。
+					data: {
+					text: '测试'
+					},
+					method: 'post',
 					// header: {
 					// 'custom-header': 'hello' //自定义请求头信息
 					// },
