@@ -1,5 +1,7 @@
 import App from './App'
 import store from './store'
+import request from '@/common/request.js';
+Vue.prototype.$Z = request;
 
 // #ifndef VUE3
 import Vue from 'vue'
@@ -14,7 +16,8 @@ Vue.prototype.$backgroundAudioData = {
 App.mpType = 'app'
 const app = new Vue({
 	store,
-	...App
+	// ...App
+	render:h=>h(App)
 })
 app.$mount()
 // #endif

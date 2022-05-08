@@ -22,11 +22,12 @@
 
 		},
 		{
-			"path": "pages/homePage/tabAll/tabAll",
+			"path": "pages/homePage/tabAll/tabAll/tabAll",
 			"style": {
 				"navigationBarTitleText": "",
 				"enablePullDownRefresh": false
 			}
+
 		},
 		{
 			"path": "pages/tabBar/component/component",
