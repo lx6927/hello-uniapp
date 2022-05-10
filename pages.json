@@ -16,7 +16,7 @@
 		{
 			"path": "pages/loginPage/loginPage",
 			"style": {
-				"navigationBarTitleText": "登录"
+				"navigationBarTitleText": "登陆"
 				// "enablePullDownRefresh": false
 			}
 		
@@ -36,23 +36,23 @@
 				"enablePullDownRefresh": false
 			}
 		},
-		// {
-		// 	"path": "pages/tabBar/component/component",
-		// 	"style": {
-		// 		"navigationBarTitleText": "内置组件",
-		// 		"app-plus": {
-		// 			"bounce": "vertical",
-		// 			"titleNView": {
-		// 				"buttons": [{
-		// 					"text": "\ue534",
-		// 					"fontSrc": "/static/uni.ttf",
-		// 					"fontSize": "22px",
-		// 					"color": "#FFFFFF"
-		// 				}]
-		// 			}
-		// 		}
-		// 	}
-		// },
+		{
+			"path": "pages/tabBar/component/component",
+			"style": {
+				"navigationBarTitleText": "内置组件",
+				"app-plus": {
+					"bounce": "vertical",
+					"titleNView": {
+						"buttons": [{
+							"text": "\ue534",
+							"fontSrc": "/static/uni.ttf",
+							"fontSize": "22px",
+							"color": "#FFFFFF"
+						}]
+					}
+				}
+			}
+		},
 		// {
 		// 	"path": "pages/tabBar/API/API",
 		// 	"style": {

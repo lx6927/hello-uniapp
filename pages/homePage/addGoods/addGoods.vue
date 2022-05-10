@@ -14,7 +14,9 @@
 				<uni-forms class="form" ref="form" :modelValue="formData" :rules="rules">
 					<!-- 文件 -->
 					<uni-card :is-shadow="false" :isFull="true">
-						<uni-file-picker limit="9"></uni-file-picker>
+						<uni-file-picker ref="files" v-model="imageValue" file-mediatype="image"
+							file-extname="png,jpg,jpeg" limit="3" :auto-upload="false" @progress="progress"
+							@success="success" @fail="fail" @select="select"></uni-file-picker>
 					</uni-card>
 
 					<!-- 类型 -->
@@ -53,6 +55,7 @@
 						<uni-forms-item label="备注" name="remark">
 							<uni-easyinput type="textarea" v-model="formData.remark" placeholder="" />
 						</uni-forms-item>
+						<button @click="submitForm">添加物品</button>
 					</uni-card>
 
 
@@ -67,6 +70,7 @@
 	export default {
 		data() {
 			return {
+				imageValue: [],
 				formData: {
 					// id:1,
 					name: "玻璃窗set", // 名称
@@ -100,15 +104,39 @@
 					// 对name字段进行必填验证
 					name: {
 						rules: [{
-								required: true,
-								errorMessage: '请输入姓名',
-							},
-							{
-								minLength: 3,
-								maxLength: 5,
-								errorMessage: '姓名长度在 {minLength} 到 {maxLength} 个字符',
-							}
-						]
+							required: true,
+							errorMessage: '名称不能为空',
+						}]
+					},
+					num: {
+						rules: [{
+							format: 'number',
+							errorMessage: '只能输入数字'
+						}]
+					},
+					room: {
+						rules: [{
+							required: true,
+							errorMessage: '房间不能为空',
+						}]
+					},
+					fullPayment: {
+						rules: [{
+							format: 'number',
+							errorMessage: '只能输入数字'
+						}]
+					},
+					downPayment: {
+						rules: [{
+							format: 'number',
+							errorMessage: '只能输入数字'
+						}]
+					},
+					finalPayment: {
+						rules: [{
+							format: 'number',
+							errorMessage: '只能输入数字'
+						}]
 					},
 				}
 			}
@@ -135,6 +163,37 @@
 				// uni.navigateTo({
 				// 	url: 'pages/tabBar/API/API'
 				// })
+			},
+			// 选择文件后触发
+			select() {
+
+			},
+			// 文件上传时触发,上传进度,上传文件索引,当前文件对象
+			progress(progressm, index, tempFile, tempFiles, tempFilePaths) {
+				console.log(110, progressm, index, tempFile, tempFiles, tempFilePaths)
+			},
+			// 上传成功触发
+			success(file) {
+				console.log(111, file)
+			},
+			// 上传失败触发
+			fail() {
+
+			},
+			// 文件从列表移除时触发
+			delete() {
+
+			},
+			submitForm() {
+				// this.$refs.files.upload()
+				// console.log(this.imageValue, this.$refs.files)
+				this.$refs["form"].validate().then(res => {
+					let data = {
+
+					}
+				}).catch(err => {
+					console.log('err0', err);
+				})
 			}
 		}
 	}
@@ -167,7 +226,7 @@
 	.drawer-view {
 		.form {
 			/deep/ .uni-forms-item__inner {
-				padding-bottom: 10px;
+				padding-bottom: 17px;
 			}
 		}
 	}

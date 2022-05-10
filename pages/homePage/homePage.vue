@@ -73,7 +73,7 @@
 		},
 		onReady() {
 			console.log(1111)
-			this.ajax();
+			// this.ajax();
 		},
 		methods: {
 			ajax() {
