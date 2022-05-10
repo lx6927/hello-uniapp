@@ -2,7 +2,7 @@
 	<view>
 
 		<view class="tab_nav">
-			<view class="navTitle" v-for="(item,index) in navList" :key="index">
+			<view class="navTitle" v-for="(item,index) in navList" :key="item.index">
 				<view :class="{'active':isActive===index}" @click="checked(index)">
 					{{item.title}}
 				</view>
@@ -72,25 +72,32 @@
 			};
 		},
 		onReady() {
-			console.log(1111)
-			// this.ajax();
+			console.log(111110,uni.getStorageSync('token'))
+			setTimeout(()=>{
+				this.ajax();
+
+			},5000)
 		},
 		methods: {
 			ajax() {
-				uni.request({
-					url: 'http://127.0.0.1:9999/login', //仅为示例，并非真实接口地址。
-					data: {
-					text: '测试'
-					},
-					method: 'post',
-					// header: {
-					// 'custom-header': 'hello' //自定义请求头信息
-					// },
-					success: (res) => {
-						console.log(res);
-						// this.text = 'request success';
-					}
-				});
+				this.$Z.get('/article').then(res=>{
+					console.log(11111111,res)
+				})
+				// uni.request({
+				// 	// url: this.selfConfig.baseUrl+'article', //仅为示例，并非真实接口地址。
+				// 	url: '/article', //仅为示例，并非真实接口地址。
+				// 	data: {
+				// 	text: '测试'
+				// 	},
+				// 	method: 'get',
+				// 	// header: {
+				// 	// 'custom-header': 'hello' //自定义请求头信息
+				// 	// },
+				// 	success: (res) => {
+				// 		console.log(res);
+				// 		// this.text = 'request success';
+				// 	}
+				// });
 			},
 			checked(index) {
 				this.isActive = index

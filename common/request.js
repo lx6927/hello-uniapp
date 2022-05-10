@@ -1,34 +1,44 @@
-export default{
+import config from "./config.js"
+export default {
 	//封装uni.request()：
-	request(options){
-		return new Promise((resolve,reject)=>{
+	request(options) {
+		return new Promise((resolve, reject) => {
+			let token = uni.getStorageSync('token')
+			console.log(11111, token)
 			//书写异步操作的代码
 			uni.request({
 				...options,
-				success:res=>{
-					if(options.native){
-						resolve(res)	//调取接口后返回的原生数据	
+				url: config.baseUrl + options.url,
+				method: options.method || 'POST',
+				header: options.header || {
+					// 根据实际接口设计 key 取 token 或者 authorization
+					authorization: token,
+				},
+				success: res => {
+					if (options.native) {
+						resolve(res) //调取接口后返回的原生数据
 					}
-					if(res.statusCode === 200){
-						resolve(res.data)	//异步操作执行成功
-					}else{
+					if (res.statusCode === 200) {
+						resolve(res.data) //异步操作执行成功
+					} else {
 						console.log('请求的接口没有找到');
-						reject(res) 	//异步操作执行失败
+						reject(res) //异步操作执行失败
 					}
 				}
 			})
 		})
 	},
-	get(url,data={},options={}){
-		options.url=url;
-		options.data=data;
-		options.method='get';
+	get(url, data = {}, options = {}) {
+		console.log(222222222)
+		options.url = url;
+		options.data = data;
+		options.method = 'get';
 		return this.request(options)
 	},
-	post(url,data={},options={}){
-		options.url=url;
-		options.data=data;
-		options.method='post';
+	post(url, data = {}, options = {}) {
+		options.url = url;
+		options.data = data;
+		options.method = 'post';
 		return this.request(options)
 	}
 

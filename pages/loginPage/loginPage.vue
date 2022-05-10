@@ -43,15 +43,20 @@
 				}
 			}
 		},
+		mounted() {
+			console.log(2222,this.selfConfig)
+		},
 		methods: {
 			submit(ref) {
+				// console.log(2222,selfConfig)
 				this.$refs[ref].validate().then(res => {
 					let data = {
 						account: this.formData.account,
 						pwd: this.formData.pwd
 					}
 					uni.request({
-						url: 'http://119.3.132.242/api/login',
+						// url: 'http://localhost:9999/login/',
+						url: this.selfConfig.baseUrl+'login',
 						data: data,
 						method: 'post',
 						// header: {
@@ -59,12 +64,21 @@
 						// },
 						success: (res) => {
 							console.log('success', res);
-							uni.showToast({
-								title: `登陆成功`
-							})
-							uni.switchTab({
-								url: '/pages/homePage/homePage',
-							})
+							if(res.data.code===0){
+								uni.showToast({
+									title: `登陆成功`
+								})
+								// 存储localstorage
+								uni.setStorageSync('token',res.data.token)
+								// uni.setStorage({key: 'token',data: res.data.token});
+								uni.switchTab({
+									url: '/pages/homePage/homePage',
+								})
+							}else{
+								uni.showToast({
+									title: `登陆失败，`+res.data.message
+								})
+							}
 						},
 						fail: (res) => {
 							console.log(res);
