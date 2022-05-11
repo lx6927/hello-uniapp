@@ -66,9 +66,9 @@
 			};
 		},
 		onReady() {
-			// setTimeout(() => {
-				// this.ajax();
-			// }, 5000)
+			setTimeout(() => {
+				this.ajax();
+			}, 5000)
 		},
 		methods: {
 			ajax() {

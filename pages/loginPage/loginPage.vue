@@ -45,7 +45,9 @@
 				}
 			}
 		},
-		mounted() {},
+		mounted() {
+			// uni.removeStorageSync('token')
+		},
 		methods: {
 			test() {
 				uni.switchTab({
@@ -63,20 +65,22 @@
 					}
 					this.$Z.post('/login', data).then(res => {
 						console.log('登陆', res);
-						if (res.data.code === 0) {
+						if (res.code === 0) {
 							uni.showToast({
 								title: `登陆成功`
 							})
-							// 存储localstorage
-							uni.setStorageSync('token', res.data.token)
-							// uni.setStorage({key: 'token',data: res.data.token});
+							// 存储token localstorage
+							uni.setStorageSync('token', res.token)
+							// 存储user localstorage
+							uni.setStorageSync('userInfo', JSON.stringify(res.data))
+							// uni.setStorage({key: 'token',data: res.token});
 							uni.switchTab({
 								url: '/pages/homePage/homePage',
 							})
 						} else {
 							uni.showToast({
-								icon: 'error',
-								title: res.data.message
+								// 	icon: 'error',
+								title: res.message || `登陆失败`
 							})
 						}
 					})
