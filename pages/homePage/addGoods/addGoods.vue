@@ -1,31 +1,27 @@
 <template>
 	<view class="drawer-view">
 		<uni-drawer class="drawer" ref="drawer" mode="right" :width="400" @change="change($event,'drawer')">
-			<view class="inner">
 
-				<view class="header">
+			<text style="color:#000;font-size:100px">1111</text>1111
+			<view class="inner">
+				222
+
+				<!-- <view class="header">
 					<view class="btn-back" @tap="navigateBack">
 						<i class="uni-btn-icon" style="color: rgb(0, 0, 0); font-size: 27px;"></i>
 					</view>
 					<text class="title">添加物品</text>
-				</view>
+				</view> -->
 
 
 				<uni-forms class="form" ref="form" :modelValue="formData" :rules="rules">
 					<!-- 文件 -->
-					<uni-card :is-shadow="false" :isFull="true">
+					<!-- <uni-card :is-shadow="false" :isFull="true">
 						<uni-file-picker limit="9"></uni-file-picker>
-					</uni-card>
-
-					<!-- 类型 -->
-					<!-- <uni-card :is-shadow="false"> -->
-					<!-- <uni-forms-item label="类型" name="name">
-							<uni-easyinput type="text" v-model="formData.name" placeholder="请输入姓名" />
-						</uni-forms-item> -->
-					<!-- </uni-card> -->
+					</uni-card> -->
 
 					<!-- 表单 -->
-					<uni-card :is-shadow="false" :isFull="true">
+					<!-- <uni-card :is-shadow="false" :isFull="true">
 						<uni-forms-item label="名称" name="name" required>
 							<uni-easyinput type="text" v-model="formData.name" placeholder="" />
 						</uni-forms-item>
@@ -34,10 +30,10 @@
 						</uni-forms-item>
 						<uni-forms-item label="房间" name="room" required>
 							<uni-easyinput v-model="formData.room" placeholder="" />
-						</uni-forms-item>
+						</uni-forms-item> -->
 
 						<!-- 价格 -->
-						<uni-forms-item label="全款" name="fullPayment">
+						<<!-- uni-forms-item label="全款" name="fullPayment">
 							<uni-easyinput v-model="formData.fullPayment" placeholder="" />
 						</uni-forms-item>
 						<uni-forms-item label="定金" name="downPayment">
@@ -47,14 +43,10 @@
 							<uni-easyinput v-model="formData.finalPayment" placeholder="" />
 						</uni-forms-item>
 
-
-
-
 						<uni-forms-item label="备注" name="remark">
 							<uni-easyinput type="textarea" v-model="formData.remark" placeholder="" />
-						</uni-forms-item>
-					</uni-card>
-
+						</uni-forms-item> -->
+					<!-- </uni-card> -->
 
 				</uni-forms>
 

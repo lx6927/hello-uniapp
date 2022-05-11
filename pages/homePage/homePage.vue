@@ -25,21 +25,17 @@
 			</uni-grid>
 		</uni-section> -->
 
-		<uni-fab :pattern="pattern" @fabClick="fabClick"></uni-fab>
-
-		<addGoods :openStatus="openStatus" @changeOpenStatus="changeOpenStatus"></addGoods>
+		<uni-fab :pattern="pattern" horizontal="right" @fabClick="fabClick"></uni-fab>
 
 	</view>
 </template>
 
 <script>
 	import tabAll from './tabAll/tabAll.vue'
-	import addGoods from './addGoods/addGoods.vue'
 
 	export default {
 		components: {
 			tabAll,
-			addGoods
 		},
 		data() {
 			return {
@@ -67,22 +63,19 @@
 					iconColor: '#fff'
 				},
 
-				// 抽屉
-				openStatus: false,
 			};
 		},
 		onReady() {
-			setTimeout(()=>{
-				this.ajax();
-
-			},5000)
+			// setTimeout(() => {
+				// this.ajax();
+			// }, 5000)
 		},
 		methods: {
 			ajax() {
-				this.$Z.get('/article').then(res=>{
-					console.log(11111111,res)
-				}).catch(err=>{
-					console.log(2222,err)
+				this.$Z.get('/article').then(res => {
+					console.log(11111111, res)
+				}).catch(err => {
+					console.log(2222, err)
 				})
 			},
 			checked(index) {
@@ -90,15 +83,16 @@
 			},
 			fabClick() {
 				// this.$refs["showLeft"].open()
-				this.openStatus = true;
+				uni.navigateTo({
+					url: "./addGoodsPage/addGoodsPage",
+					// animationType: 'slide-in-right',
+					// animationDuration: 300,
+				})
 				uni.showToast({
 					title: '点击了悬浮按钮',
 					icon: 'none'
 				})
 			},
-			changeOpenStatus(status){
-				this.openStatus = status;
-			}
 
 		}
 	}

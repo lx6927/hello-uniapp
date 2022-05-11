@@ -1,13 +1,15 @@
 <template>
 	<view class="loginPage">
 		<uni-forms class="form" ref="form" :modelValue="formData" :rules="rules">
-			<uni-forms-item label="账号" name="account" required>
+			<uni-forms-item label="账号" name="account">
 				<uni-easyinput type="text" v-model="formData.account" placeholder="请输入账号" />
 			</uni-forms-item>
 			<uni-forms-item label="密码" name="pwd">
 				<uni-easyinput v-model="formData.pwd" placeholder="请输入密码" />
 			</uni-forms-item>
 			<button type="primary" @click="submit('form')">登陆</button>
+			<br>
+			<button type="primary" @click="test('form')">测试</button>
 		</uni-forms>
 	</view>
 </template>
@@ -43,31 +45,35 @@
 				}
 			}
 		},
-		mounted() {
-			// console.log("当前配置",this.selfConfig)
-		},
+		mounted() {},
 		methods: {
+			test() {
+				uni.switchTab({
+					url: '/pages/homePage/homePage',
+				})
+			},
 			submit(ref) {
 				this.$refs[ref].validate().then(res => {
 					let data = {
 						account: this.formData.account,
 						pwd: this.formData.pwd
 					}
-					this.$Z.post('/login',data).then(res=>{
+					this.$Z.post('/login', data).then(res => {
 						console.log('登陆', res);
-						if(res.data.code===0){
+						if (res.data.code === 0) {
 							uni.showToast({
 								title: `登陆成功`
 							})
 							// 存储localstorage
-							uni.setStorageSync('token',res.data.token)
+							uni.setStorageSync('token', res.data.token)
 							// uni.setStorage({key: 'token',data: res.data.token});
 							uni.switchTab({
 								url: '/pages/homePage/homePage',
 							})
-						}else{
+						} else {
 							uni.showToast({
-								title: `登陆失败，`+res.data.message
+								icon: 'error',
+								title: res.data.message
 							})
 						}
 					})
