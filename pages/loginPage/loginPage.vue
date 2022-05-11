@@ -51,6 +51,9 @@
 				uni.switchTab({
 					url: '/pages/homePage/homePage',
 				})
+				// uni.navigateTo({
+				// 	url:"/pages/tabBar/extUI/extUI"
+				// })
 			},
 			submit(ref) {
 				this.$refs[ref].validate().then(res => {
