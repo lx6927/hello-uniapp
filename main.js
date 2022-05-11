@@ -2,10 +2,6 @@ import App from './App'
 import store from './store'
 import request from '@/common/request.js';
 Vue.prototype.$Z = request;
-Vue.prototype.selfConfig = {
-	baseUrl:"http://localhost:9999/",
-	// http://119.3.132.242/api
-};
 
 // #ifndef VUE3
 import Vue from 'vue'

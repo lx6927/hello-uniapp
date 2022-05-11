@@ -44,50 +44,66 @@
 			}
 		},
 		mounted() {
-			console.log(2222,this.selfConfig)
+			// console.log("当前配置",this.selfConfig)
 		},
 		methods: {
 			submit(ref) {
-				// console.log(2222,selfConfig)
 				this.$refs[ref].validate().then(res => {
 					let data = {
 						account: this.formData.account,
 						pwd: this.formData.pwd
 					}
-					uni.request({
-						// url: 'http://localhost:9999/login/',
-						url: this.selfConfig.baseUrl+'login',
-						data: data,
-						method: 'post',
-						// header: {
-						// 'custom-header': 'hello' //自定义请求头信息
-						// },
-						success: (res) => {
-							console.log('success', res);
-							if(res.data.code===0){
-								uni.showToast({
-									title: `登陆成功`
-								})
-								// 存储localstorage
-								uni.setStorageSync('token',res.data.token)
-								// uni.setStorage({key: 'token',data: res.data.token});
-								uni.switchTab({
-									url: '/pages/homePage/homePage',
-								})
-							}else{
-								uni.showToast({
-									title: `登陆失败，`+res.data.message
-								})
-							}
-						},
-						fail: (res) => {
-							console.log(res);
-							console.log('err', err);
+					this.$Z.post('/login',data).then(res=>{
+						console.log('登陆', res);
+						if(res.data.code===0){
 							uni.showToast({
-								title: `登陆失败`
+								title: `登陆成功`
 							})
-						},
-					});
+							// 存储localstorage
+							uni.setStorageSync('token',res.data.token)
+							// uni.setStorage({key: 'token',data: res.data.token});
+							uni.switchTab({
+								url: '/pages/homePage/homePage',
+							})
+						}else{
+							uni.showToast({
+								title: `登陆失败，`+res.data.message
+							})
+						}
+					})
+					// uni.request({
+					// 	url: 'http://localhost:9999/login/',
+					// 	data: data,
+					// 	method: 'post',
+					// 	// header: {
+					// 	// 'custom-header': 'hello' //自定义请求头信息
+					// 	// },
+					// 	success: (res) => {
+					// 		console.log('success', res);
+					// 		if(res.data.code===0){
+					// 			uni.showToast({
+					// 				title: `登陆成功`
+					// 			})
+					// 			// 存储localstorage
+					// 			uni.setStorageSync('token',res.data.token)
+					// 			// uni.setStorage({key: 'token',data: res.data.token});
+					// 			uni.switchTab({
+					// 				url: '/pages/homePage/homePage',
+					// 			})
+					// 		}else{
+					// 			uni.showToast({
+					// 				title: `登陆失败，`+res.data.message
+					// 			})
+					// 		}
+					// 	},
+					// 	fail: (res) => {
+					// 		console.log(res);
+					// 		console.log('err', err);
+					// 		uni.showToast({
+					// 			title: `登陆失败`
+					// 		})
+					// 	},
+					// });
 
 				}).catch(err => {
 					console.log('err0', err);

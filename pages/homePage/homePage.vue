@@ -72,7 +72,6 @@
 			};
 		},
 		onReady() {
-			console.log(111110,uni.getStorageSync('token'))
 			setTimeout(()=>{
 				this.ajax();
 
@@ -82,22 +81,9 @@
 			ajax() {
 				this.$Z.get('/article').then(res=>{
 					console.log(11111111,res)
+				}).catch(err=>{
+					console.log(2222,err)
 				})
-				// uni.request({
-				// 	// url: this.selfConfig.baseUrl+'article', //仅为示例，并非真实接口地址。
-				// 	url: '/article', //仅为示例，并非真实接口地址。
-				// 	data: {
-				// 	text: '测试'
-				// 	},
-				// 	method: 'get',
-				// 	// header: {
-				// 	// 'custom-header': 'hello' //自定义请求头信息
-				// 	// },
-				// 	success: (res) => {
-				// 		console.log(res);
-				// 		// this.text = 'request success';
-				// 	}
-				// });
 			},
 			checked(index) {
 				this.isActive = index
